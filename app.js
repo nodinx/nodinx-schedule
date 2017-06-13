@@ -64,7 +64,7 @@ module.exports = app => {
         throw new Error(`Cannot find schedule ${schedulePath}`);
       }
     } catch (err) {
-      err.message = `[egg-schedule] ${err.message}`;
+      err.message = `[nodinx-schedule] ${err.message}`;
       return Promise.reject(err);
     }
 
@@ -86,9 +86,9 @@ module.exports = app => {
 
       const task = schedule.task;
       const key = schedule.key;
-      app.coreLogger.info('[egg-schedule]: register schedule %s', key);
+      app.coreLogger.info('[nodinx-schedule]: register schedule %s', key);
       app.messenger.on(key, () => {
-        app.coreLogger.info('[egg-schedule]: get message %s', key);
+        app.coreLogger.info('[nodinx-schedule]: get message %s', key);
 
       // run with anonymous context
         const ctx = app.createAnonymousContext({
@@ -100,14 +100,14 @@ module.exports = app => {
         task(ctx)
       .then(() => true) // succeed
       .catch(err => {
-        err.message = `[egg-schedule] ${key} excute error. ${err.message}`;
+        err.message = `[nodinx-schedule] ${key} excute error. ${err.message}`;
         app.logger.error(err);
         return false;   // failed
       })
       .then(success => {
         const rt = Date.now() - start;
         const status = success ? 'succeed' : 'failed';
-        app.coreLogger.info(`[egg-schedule] ${key} excute ${status}, used ${rt}ms`);
+        app.coreLogger.info(`[nodinx-schedule] ${key} excute ${status}, used ${rt}ms`);
       });
       });
     }
@@ -116,10 +116,10 @@ module.exports = app => {
 
 function sendMessage(app, method, key) {
   if (app.disableSchedule) {
-    app.coreLogger.info(`[egg-schedule] message ${key} did not sent`);
+    app.coreLogger.info(`[nodinx-schedule] message ${key} did not sent`);
     return;
   }
-  app.coreLogger.info(`[egg-schedule] send message: ${method} ${key}`);
+  app.coreLogger.info(`[nodinx-schedule] send message: ${method} ${key}`);
   app.messenger[method](key);
 }
 
@@ -133,7 +133,7 @@ function allHander(schedule, sender) {
 
 function baseHander(schedule, send) {
   if (!schedule.interval && !schedule.cron) {
-    throw new Error('[egg-schedule] schedule.interval or schedule.cron must be present');
+    throw new Error('[nodinx-schedule] schedule.interval or schedule.cron must be present');
   }
 
   if (schedule.interval) {
@@ -146,7 +146,7 @@ function baseHander(schedule, send) {
     try {
       interval = parser.parseExpression(schedule.cron);
     } catch (err) {
-      err.message = `[egg-schedule] parse cron instruction(${schedule.cron}) error: ${err.message}`;
+      err.message = `[nodinx-schedule] parse cron instruction(${schedule.cron}) error: ${err.message}`;
       throw err;
     }
     startCron(interval, send);

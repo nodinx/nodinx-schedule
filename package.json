@@ -1,7 +1,7 @@
 {
   "name": "nodinx-schedule",
-  "version": "2.3.0",
-  "description": "schedule plugin for egg, support corn job.",
+  "version": "2.3.1",
+  "description": "schedule plugin for nodinx, support corn job.",
   "eggPlugin": {
     "name": "schedule"
   },
