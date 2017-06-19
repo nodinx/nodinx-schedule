@@ -19,9 +19,10 @@ module.exports = app => {
     all: allHander,
   };
 
-  app.messenger.once('egg-ready', startSchedule);
+  app.once('egg-ready', startSchedule);
 
   function startSchedule() {
+    app.coreLogger.info("app start schedule...");
     app.disableSchedule = false;
     for (const s in schedules) {
       const schedule = schedules[s];
@@ -87,7 +88,7 @@ module.exports = app => {
       const task = schedule.task;
       const key = schedule.key;
       app.coreLogger.info('[nodinx-schedule]: register schedule %s', key);
-      app.messenger.on(key, () => {
+      app.on(key, () => {
         app.coreLogger.info('[nodinx-schedule]: get message %s', key);
 
       // run with anonymous context
@@ -120,7 +121,7 @@ function sendMessage(app, method, key) {
     return;
   }
   app.coreLogger.info(`[nodinx-schedule] send message: ${method} ${key}`);
-  app.messenger[method](key);
+  app.emit(key);
 }
 
 function workerHandler(schedule, sender) {
