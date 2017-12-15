@@ -1,41 +1,21 @@
-# egg-schedule
-
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
-[![npm download][download-image]][download-url]
-
-[npm-image]: https://img.shields.io/npm/v/egg-schedule.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-schedule
-[travis-image]: https://img.shields.io/travis/eggjs/egg-schedule.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-schedule
-[codecov-image]: https://codecov.io/github/eggjs/egg-schedule/coverage.svg?branch=master
-[codecov-url]: https://codecov.io/github/eggjs/egg-schedule?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-schedule.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-schedule
-[snyk-image]: https://snyk.io/test/npm/egg-schedule/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-schedule
-[download-image]: https://img.shields.io/npm/dm/egg-schedule.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-schedule
+# nodinx-schedule
 
 A schedule plugin for egg. It supports two scheduler types, `worker` and `all`, and can be extended by other plugins.
 
 ## Installation
 
 ```bash
-$ npm i egg-schedule --save
+$ npm i nodinx-schedule --save
 ```
 
 ## Usage
 
-`egg-schedule` is a plugin that has been built-in for egg. It is enabled by default.
+`nodinx-schedule` is a plugin that has been built-in for egg. It is enabled by default.
 
 ```javascript
 // {app_root}/config/plugin.js
 exports.schedule = {
-  package: 'egg-schedule'
+  package: 'nodinx-schedule'
 };
 
 // {app_root}/app/schedule/cleandb.js
@@ -61,7 +41,7 @@ exports.task = function* (ctx) {
 
 ## Overview
 
-`egg-schedule` supports both time-based scheduling and interval-based scheduling.
+`nodinx-schedule` supports both time-based scheduling and interval-based scheduling.
 
 Schedule decision is being made by `agent` process. `agent` triggers a task and sends message to `worker` process. Then, one or all `worker` process(es) execute the task based on schedule type.
 
@@ -195,7 +175,7 @@ module.exports = app => {
 
 ## Testing
 
-`app.runSchedule(scheduleName)` is provided by `egg-schedule` plugin only for test purpose.
+`app.runSchedule(scheduleName)` is provided by `nodinx-schedule` plugin only for test purpose.
 
 Example:
 

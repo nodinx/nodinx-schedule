@@ -1,5 +1,5 @@
 {
-  "name": "nodinx-schedule",
+  "name": "@tencent/nodinx-schedule",
   "version": "2.3.3",
   "description": "schedule plugin for nodinx, support corn job.",
   "eggPlugin": {
@@ -12,12 +12,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:eggjs/egg-schedule.git"
+    "url": "http://git.code.oa.com/WSRD-Tech-Center-Lib/nodinx-schedule.git"
   },
   "keywords": [
-    "egg",
-    "egg-plugin",
-    "eggPlugin",
+    "nodinx",
+    "nodinx-plugin",
+    "nodinxPlugin",
     "schedule",
     "cron"
   ],
@@ -28,13 +28,11 @@
     "is-type-of": "^1.0.0"
   },
   "devDependencies": {
-    "autod": "^2.7.1",
-    "egg": "^0.9.0",
-    "egg-bin": "^2.0.2",
-    "egg-ci": "^1.1.0",
+    "@tencent/nodinx": "^3.0.4",
+    "@tencent/nodinx-bin": "^3.3.9",
     "egg-mock": "^2.3.1",
-    "eslint": "^3.14.1",
-    "eslint-config-egg": "^3.2.0",
+    "eslint": "^3.19.0",
+    "eslint-config-bugly": "^14.1.6",
     "supertest": "^3.0.0"
   },
   "engines": {
@@ -43,10 +41,9 @@
   "scripts": {
     "lint": "eslint .",
     "test": "npm run lint -- --fix && npm run test-local",
-    "test-local": "egg-bin test",
-    "cov": "egg-bin cov",
-    "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "test-local": "nodinx-bin test",
+    "cov": "nodinx-bin cov",
+    "ci": "npm run lint && npm run cov"
   },
   "ci": {
     "version": "6, 7"
